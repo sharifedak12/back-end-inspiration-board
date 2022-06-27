@@ -25,7 +25,7 @@ def test_get_board_one_board(client, one_task):
     assert len(response_body) == 1
     assert response_body == [
         {
-            "id": 1,
+            "board_id": 1,
             "title": "Share your support", 
             "owner":"Shari"
         }
@@ -42,7 +42,7 @@ def test_get_specific_board(client, one_task):
     assert response.status_code == 200
     assert response_body == {
         {
-            "id": 1,
+            "board_id": 1,
             "title": "Share your support", 
             "owner":"Shari"
         }
@@ -73,7 +73,7 @@ def test_create_board(client):
     assert response.status_code == 201
     assert response_body == {
     {
-            "id": 1,
+            "board_id": 1,
             "title": "It's a new board",
             "owner": "Ada Lovelace",
         }
@@ -136,7 +136,7 @@ def test_get_cards_for_specific_board(client, one_card_belongs_to_one_board):
     assert "cards" in response_body
     assert len(response_body["tasks"]) == 1
     assert response_body == {
-        "id": 1,
+        "board_id": 1,
         "title": "Share your support",
         "owner": "Shari",
         "cards": [
