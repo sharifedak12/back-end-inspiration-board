@@ -5,6 +5,7 @@ class Card(db.Model):
     likes = db.Column(db.Integer, nullable=False)
     board_id = db.Column(db.Integer, db.ForeignKey('board.board_id'), nullable=False)
     board = db.relationship('Board', backref='cards', lazy=True)
+    card_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 
     def to_dict(self):
         return {
