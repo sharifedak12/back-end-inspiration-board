@@ -23,8 +23,8 @@ def create_app():
     db.init_app(app)
     migrate.init_app(app, db)
 
-    from app.routes.board_routes import board_bp
-    app.register_blueprint(board_bp)
+    from app.routes.board_routes import boards_bp
+    app.register_blueprint(boards_bp)
 
     CORS(app)
     return app
