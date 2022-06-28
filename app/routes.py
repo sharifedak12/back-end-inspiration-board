@@ -11,7 +11,7 @@ def create_card():
     Create a new card
     """
     data = request.get_json()
-    card = Card(data['message'], data['board_id']).create()
+    card = Card(messsage = data['message'], board_id = data['board_id'])
     db.session.add(card)
     db.session.commit()
     return jsonify(card.to_dict())
