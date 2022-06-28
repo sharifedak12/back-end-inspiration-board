@@ -6,10 +6,6 @@ class Board(db.Model):
     owner = db.Column(db.String, nullable=False)
     cards = db.relationship('Card', backref='board', lazy=True)
 
-    def add_card(self, card):
-        self.cards.append(card)
-        db.session.commit()
-    
     def to_dict(self):
         return {
             'id': self.id,
