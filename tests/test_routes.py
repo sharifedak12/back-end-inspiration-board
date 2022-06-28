@@ -109,7 +109,7 @@ def test_delete_card_not_found(client):
     assert Card.query.all() == []
 
 
-@pytest.mark.skip(reason="No way to test this feature yet")
+#@pytest.mark.skip(reason="No way to test this feature yet")
 def test_create_card_must_contain_message(client):
     # Act
     response = client.post("/cards", json={
