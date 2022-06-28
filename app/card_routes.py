@@ -19,7 +19,7 @@ def create_card():
     try:
         card = Card(messsage = data['message'], board_id = data['board_id'])
     except KeyError:
-        error_message('Invalid Data', 400)
+        error_message('Invalid data', 400)
     db.session.add(card)
     db.session.commit()
     return jsonify(card.to_dict())
