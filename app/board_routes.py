@@ -19,3 +19,21 @@ def get_board_by_id(board_id):
     board_dict = board_data.to_dict()
 
     return make_response(jsonify(dict(board=board_dict)))
+
+@boards_bp.route("", methods=["POST"])
+def create_board():
+    request_body = request.get_json()
+
+    try:
+        board = Board(title=request_body["title"], owner=request_body["owner"])
+    except KeyError as err:
+        return make_response({"details": "Invalid data"}, 400)
+    
+    db.session.add(board)
+    db.session.commit()
+
+    return make_response({
+        "id": board.board_id,
+        "title": board.title,
+        "owner": board.owner,
+    }, 201)
