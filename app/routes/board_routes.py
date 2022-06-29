@@ -20,7 +20,7 @@ def read_all_boards():
 
 @boards_bp.route("/<board_id>", methods=["GET"])
 def get_board_by_id(board_id):
-    board_data = validate_id(board_id)
+    board_data = validate_id(Board, board_id)
     board_dict = board_data.to_dict()
 
     return make_response(jsonify(dict(board=board_dict)))
