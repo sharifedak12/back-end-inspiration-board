@@ -30,3 +30,4 @@ def validate_card(cls, id):
 
 def error_message(message, status_code):
     abort(make_response(jsonify(dict(details=message)), status_code))
+
