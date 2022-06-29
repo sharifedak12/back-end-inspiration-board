@@ -20,7 +20,7 @@ def create_card():
     """
     data = request.get_json()
     try:
-        card = Card(messsage = data['message'], board_id = data['board_id'])
+        card = Card(message = data['message'], board_id = data['board_id'], likes = data['likes'])
     except KeyError:
         error_message('Invalid data', 400)
     db.session.add(card)
