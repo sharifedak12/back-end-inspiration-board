@@ -50,7 +50,7 @@ def test_get_specific_board(client, one_task):
 
 
 @pytest.mark.skip(reason="No way to test this feature yet")
-def test_get_task_not_found(client):
+def test_get_board_not_found(client):
     # Act
     response = client.get("/boards/1")
     response_body = response.get_json()
@@ -109,7 +109,7 @@ def test_delete_card_not_found(client):
     assert Card.query.all() == []
 
 
-@pytest.mark.skip(reason="No way to test this feature yet")
+#@pytest.mark.skip(reason="No way to test this feature yet")
 def test_create_card_must_contain_message(client):
     # Act
     response = client.post("/cards", json={

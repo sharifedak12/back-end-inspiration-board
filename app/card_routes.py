@@ -1,9 +1,29 @@
 from flask import Blueprint, request, jsonify, abort, make_response
 from app import db
 from app.models.card import Card
-from app.models.board import Board
+
+'''
+Helper Functions 
+'''
+def error_message(message, status_code):
+    abort(make_response(jsonify(dict(details=message)), status_code))
+
 
 cards_bp = Blueprint("cards_bp", __name__, url_prefix="/cards")
+
+@cards_bp.route("", methods=['POST'])
+def create_card():
+    """
+    Create a new card
+    """
+    data = request.get_json()
+    try:
+        card = Card(messsage = data['message'], board_id = data['board_id'])
+    except KeyError:
+        error_message('Invalid data', 400)
+    db.session.add(card)
+    db.session.commit()
+    return jsonify(card.to_dict())
 
 @cards_bp.route("/<card_id>", methods=['DELETE'])
 def delete_card(card_id):
@@ -24,10 +44,9 @@ def validate_card(cls, id):
     model = cls.query.get(id)
 
     if not model:
-        abort(make_response({"message":f"cardfff {id} not found"}, 404))
+        abort(make_response({"message":f"card {id} not found"}, 404))
 
     return model
 
-def error_message(message, status_code):
-    abort(make_response(jsonify(dict(details=message)), status_code))
+
 
