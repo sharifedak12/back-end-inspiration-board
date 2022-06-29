@@ -18,3 +18,6 @@ def validate_request(request, *attributes):
         except KeyError:
             abort(make_response({"details": "Invalid data"}, 400)) 
     return request_body
+
+def error_message(message, status_code):
+    abort(make_response(jsonify(dict(details=message)), status_code))

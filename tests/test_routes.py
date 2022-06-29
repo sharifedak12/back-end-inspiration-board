@@ -3,7 +3,7 @@ from app.models.card import Card
 import pytest
 
 
-@pytest.mark.skip(reason="No way to test this feature yet")
+#@pytest.mark.skip(reason="No way to test this feature yet")
 def test_get_boards_no_boards(client):
     # Act
     response = client.get("/boards")
@@ -14,8 +14,8 @@ def test_get_boards_no_boards(client):
     assert response_body == []
 
 
-@pytest.mark.skip(reason="No way to test this feature yet")
-def test_get_board_one_board(client, one_task):
+#@pytest.mark.skip(reason="No way to test this feature yet")
+def test_get_board_one_board(client, one_card):
     # Act
     response = client.get("/boards")
     response_body = response.get_json()
@@ -32,8 +32,8 @@ def test_get_board_one_board(client, one_task):
     ]
 
 
-@pytest.mark.skip(reason="No way to test this feature yet")
-def test_get_specific_board(client, one_task):
+#@pytest.mark.skip(reason="No way to test this feature yet")
+def test_get_specific_board(client, one_card):
     # Act
     response = client.get("/boards/1")
     response_body = response.get_json()
@@ -49,7 +49,7 @@ def test_get_specific_board(client, one_task):
     }
 
 
-@pytest.mark.skip(reason="No way to test this feature yet")
+#@pytest.mark.skip(reason="No way to test this feature yet")
 def test_get_board_not_found(client):
     # Act
     response = client.get("/boards/1")
@@ -83,7 +83,7 @@ def test_create_board(client):
     assert new_board.title == "It's a new board"
     assert new_board.description == "Ada Lovelace"
 
-@pytest.mark.skip(reason="No way to test this feature yet")
+#@pytest.mark.skip(reason="No way to test this feature yet")
 def test_delete_card(client, one_card):
     # Act
     response = client.delete("/cards/1")
@@ -97,7 +97,7 @@ def test_delete_card(client, one_card):
     assert Card.query.get(1) == None
 
 
-@pytest.mark.skip(reason="No way to test this feature yet")
+#@pytest.mark.skip(reason="No way to test this feature yet")
 def test_delete_card_not_found(client):
     # Act
     response = client.delete("/cards/1")
@@ -125,7 +125,7 @@ def test_create_card_must_contain_message(client):
     assert Card.query.all() == []
 
 
-@pytest.mark.skip(reason="No way to test this feature yet")
+#@pytest.mark.skip(reason="No way to test this feature yet")
 def test_get_cards_for_specific_board(client, one_card_belongs_to_one_board):
     # Act
     response = client.get("/boards/1/cards")
