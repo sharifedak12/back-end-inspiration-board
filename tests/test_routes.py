@@ -60,7 +60,7 @@ def test_get_board_not_found(client):
     assert response_body == {'details': 'Invalid id: 1'}
 
 
-#@pytest.mark.skip(reason="No way to test this feature yet")
+# @pytest.mark.skip(reason="No way to test this feature yet")
 def test_create_board(client):
     # Act
     response = client.post("/boards", json={
