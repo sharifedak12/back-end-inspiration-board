@@ -10,7 +10,7 @@ def like_card(card_id):
     card = validate_id(Card, card_id)
     card.likes += 1
     db.session.commit()
-    return make_response(jsonify(card.to_dict()), 201)
+    return make_response(jsonify(card.to_dict()), 200)
 
 
 @cards_bp.route("", methods=['POST'])
