@@ -9,7 +9,7 @@ boards_bp = Blueprint("boards_bp", __name__, url_prefix="/boards")
 def get_cards_from_one_board(board_id):
     board = validate_id(Board, board_id)
     response = board.to_dict()
-    return make_response({"cards": response["cards"]}, 201)
+    return make_response(jsonify(response["cards"]), 200)
 
 @boards_bp.route("", methods=["GET"])
 def read_all_boards():
