@@ -23,7 +23,7 @@ def get_board_by_id(board_id):
     board_data = validate_id(Board, board_id)
     board_dict = board_data.to_dict()
 
-    return make_response(jsonify(dict(board=board_dict)))
+    return make_response(jsonify(board_dict))
 
 @boards_bp.route("", methods=["POST"])
 def create_board():
