@@ -34,7 +34,7 @@ def delete_card(card_id):
     db.session.delete(card)
     db.session.commit()
 
-    return make_response({"details": f'Card {card.card_id} "{card.message}" successfully deleted'})
+    return make_response({"details": f'Card {card.card_id} {card.message} successfully deleted'})
 
 
 
