@@ -52,20 +52,22 @@ def client(app):
 
 @pytest.fixture
 def one_card(app):
-    new_card = Card(
-        message="You can do it!", likes=0,)
-    db.session.add(new_card)
+    db.session.add_all([
+        Board(title="Share your support", owner="Shari"),
+        Card(message="You can do it!", likes=0, board_id=1),
+    ])
     db.session.commit()
 
 @pytest.fixture
 def three_cards(app):
     db.session.add_all([
+        Board(title="Share your support", owner="Shari"),
         Card(
-            message="You can do it!", likes=0),
+            message="You can do it!", likes=0, board_id=1),
         Card(
-            message = "It's not that hard!", likes=0),
+            message = "It's not that hard!", likes=0, board_id=1),
         Card(
-            message = "I believe in you!", likes=0)
+            message = "I believe in you!", likes=0, board_id=1),
     ])
     db.session.commit()
 
@@ -76,7 +78,7 @@ def one_board(app):
     db.session.commit()
 
 @pytest.fixture
-def one_card_belongs_to_one_board(app, one_board, one_card):
+def one_card_belongs_to_one_board(app, one_card):
     card = Card.query.first()
     board = Board.query.first()
     board.cards.append(card)
